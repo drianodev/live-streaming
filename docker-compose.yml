@@ -1,0 +1,13 @@
+services:
+  nginx:
+    image: tiangolo/nginx-rtmp:latest
+    volumes:
+      # Mapeia o arquivo de configuração local para o Nginx no contêiner
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      # Mapeia o diretório local para armazenar os segmentos HLS no contêiner
+      - ./stream:/hls/live
+    ports:
+      # Mapeia a porta local 1935 para a porta 1935 no contêiner (RTMP)
+      - "1935:1935"
+      # Mapeia a porta local 8081 para a porta 8081 no contêiner (HTTP)
+      - "8081:8081"
